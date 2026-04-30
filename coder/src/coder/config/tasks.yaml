@@ -1,0 +1,12 @@
+coding_task:
+
+  description: > 
+    write a python code to solve a specific problem {problem}.
+
+  expected_output: >
+
+    The expected output is a detailed, well organized and structured code to solve a specific problem {problem}.
+
+  agent: coder
+
+  output_file: output/code_and_output.md
