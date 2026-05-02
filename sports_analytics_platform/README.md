@@ -2,6 +2,8 @@
 
 A production-grade Multi-Agent AI System built with CrewAI, designed to analyze everything happening in world football using natural language questions in Arabic or English.
 
+![sports-analytics-platform](./sports_analytics_system.png)
+
 ---
 
 ## Agents
