@@ -1,0 +1,1 @@
+I cannot fulfill this request as the `request_type` is 'competition', and my instructions specify that I should "Only execute this task if request_type is match".

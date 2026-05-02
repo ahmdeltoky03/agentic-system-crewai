@@ -1,0 +1,167 @@
+understand_request:
+  
+  description: >
+    Analyze the following user question about football: {user_question}
+    Identify:
+    1. Type of request (player / team / match / competition)
+    2. Key entities (player name, team name, competition name)
+    3. Type of analysis needed (stats / comparison / news / standings)
+    Return a structured summary of what was understood.
+  
+  expected_output: >
+    A structured JSON containing:
+    - request_type: (player / team / match / competition)
+    - entities: list of identified names
+    - analysis_type: type of analysis needed
+    - additional_context: any extra details from the question
+  
+  agent: Orchestrator
+  
+  output_file: outputs/reports/01_understand_request.md
+  
+  verbose: true
+
+collect_data:
+  
+  description: >
+    Based on the structured request received, fetch the relevant
+    football data from the Football API.
+    - If request_type is player: fetch player stats and info
+    - If request_type is team: fetch team info, results, standings
+    - If request_type is match: fetch match details and events
+    - If request_type is competition: fetch standings and top scorers
+    Make sure to retrieve complete and accurate data.
+  
+  expected_output: >
+    A structured JSON containing all raw football data retrieved
+    from the API, including stats, results, or any relevant
+    information based on the request type.
+  
+  agent: data_collector
+  
+  context:
+    - understand_request
+  
+  output_file: outputs/reports/02_collect_data.md
+  
+  verbose: true
+
+analyze_player:
+  
+  description: >
+    Analyze the player data retrieved from the API.
+    Cover the following aspects:
+    1. Overall performance and current form
+    2. Key statistics (goals, assists, minutes played, etc.)
+    3. Strengths and weaknesses
+    4. Performance across different competitions
+    5. Comparison with previous seasons if data is available
+    Only execute this task if request_type is player.
+  
+  expected_output: >
+    A detailed player analysis report covering:
+    - Performance summary
+    - Key stats breakdown
+    - Strengths and weaknesses
+    - Form and consistency
+    - Overall rating and insights
+  
+  agent: player_analyst
+  
+  context:
+    - understand_request
+    - collect_data
+  
+  output_file: outputs/reports/03_analyze_player.md
+  
+  verbose: true
+
+analyze_team:
+  
+  description: >
+    Analyze the team data retrieved from the API.
+    Cover the following aspects:
+    1. Overall team performance and current form
+    2. Results across all competitions
+    3. League standings and points tally
+    4. Top performers in the team
+    5. Tactical observations and playing style
+    Only execute this task if request_type is team.
+  
+  expected_output: >
+    A detailed team analysis report covering:
+    - Performance summary
+    - Results and standings
+    - Top performers
+    - Tactical analysis
+    - Overall team insights
+  
+  agent: team_analyst
+  
+  context:
+    - understand_request
+    - collect_data
+  
+  output_file: outputs/reports/04_analyze_team.md
+  
+  verbose: true
+
+analyze_match:
+  
+  description: >
+    Analyze the match data retrieved from the API.
+    Cover the following aspects:
+    1. Match summary and final result
+    2. Key events (goals, cards, substitutions)
+    3. Team statistics (possession, shots, passes)
+    4. Standout performers from both teams
+    5. Tactical observations during the match
+    Only execute this task if request_type is match.
+  
+  expected_output: >
+    A detailed match analysis report covering:
+    - Match summary and result
+    - Key events timeline
+    - Team stats comparison
+    - Man of the match
+    - Tactical insights
+  
+  agent: match_analyst
+  
+  context:
+    - understand_request
+    - collect_data
+  
+  output_file: outputs/reports/05_analyze_match.md
+  
+  verbose: true
+
+write_report:
+
+  description: >
+    Analyze all the collected football data and analysis results and create
+    a comprehensive report based on the user question: {user_question}
+    Your report should:
+    1. Begin with an executive summary
+    2. Include all key statistics and data
+    3. Provide insightful analysis of trends and patterns
+    4. Cover all relevant competitions, teams, or players mentioned
+    5. Be formatted in a professional, easy-to-read style with clear headings
+  
+  expected_output: >
+    A polished, professional football analytics report that presents all findings
+    with added analysis and insights. The report should be well-structured
+    with an executive summary, main sections, and conclusion.
+  
+  agent: report_writer
+  
+  context:
+    - understand_request
+    - collect_data
+    - analyze_player
+    - analyze_team
+    - analyze_match
+  
+  output_file: outputs/reports/06_final_report.md
+  
+  verbose: true

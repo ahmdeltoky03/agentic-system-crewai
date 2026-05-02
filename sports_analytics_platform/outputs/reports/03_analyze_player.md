@@ -1,0 +1,1 @@
+The current request_type is `competition`, not `player`. As per the instructions, player analysis can only be performed if the `request_type` is `player`. Therefore, I cannot proceed with this task.
