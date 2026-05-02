@@ -1,1 +1,1 @@
-The request_type in the provided context is "competition", not "team". As per the instructions, I can only execute this task if the `request_type` is "team". Therefore, I cannot proceed with the analysis of team data.
+The `request_type` in the provided context is "competition," not "team." As per my instructions, I can only execute this task if the `request_type` is "team." Therefore, I cannot provide a detailed team analysis report based on the current context.

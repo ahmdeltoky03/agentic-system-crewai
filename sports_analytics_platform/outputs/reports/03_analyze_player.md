@@ -1,1 +1,1 @@
-The current request_type is `competition`, not `player`. As per the instructions, player analysis can only be performed if the `request_type` is `player`. Therefore, I cannot proceed with this task.
+The `request_type` in the provided context is `competition`, not `player`. As per the instructions, I can only execute this task if the `request_type` is `player`. Therefore, I cannot proceed with a player analysis based on the current data.

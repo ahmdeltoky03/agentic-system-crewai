@@ -1,1 +1,1 @@
-I cannot fulfill this request as the `request_type` is 'competition', and my instructions specify that I should "Only execute this task if request_type is match".
+The request_type is 'competition', not 'match'. As per the instructions, I can only execute this task if the request_type is 'match'. Therefore, I cannot provide a match analysis report.

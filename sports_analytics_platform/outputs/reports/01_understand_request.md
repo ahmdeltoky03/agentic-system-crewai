@@ -9,6 +9,6 @@
     "Ligue 1"
   ],
   "analysis_type": "news",
-  "additional_context": "recently"
+  "additional_context": "recently, full report, everything that happened"
 }
 ```
