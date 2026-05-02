@@ -1,0 +1,4 @@
+2026-05-02 17:06:17,524 - INFO - Session Replay for default trace: https://app.agentops.ai/sessions?trace_id=23e74a5c6eb2e5baba87a234e8aafeb6
+2026-05-02 17:06:18,164 - INFO - You're on the agentops free plan 🤔
+2026-05-02 17:08:09,743 - WARNING - end_session() is deprecated and will be removed in v4 in the future. Use agentops.end_trace() instead.
+2026-05-02 17:08:10,521 - INFO - Session Replay for default.session trace: https://app.agentops.ai/sessions?trace_id=23e74a5c6eb2e5baba87a234e8aafeb6
