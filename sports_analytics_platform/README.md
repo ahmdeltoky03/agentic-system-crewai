@@ -1,54 +1,114 @@
-# SportsAnalyticsPlatform Crew
+# Sports Analytics Platform
 
-Welcome to the SportsAnalyticsPlatform Crew project, powered by [crewAI](https://crewai.com). This template is designed to help you set up a multi-agent AI system with ease, leveraging the powerful and flexible framework provided by crewAI. Our goal is to enable your agents to collaborate effectively on complex tasks, maximizing their collective intelligence and capabilities.
+A production-grade Multi-Agent AI System built with CrewAI, designed to analyze everything happening in world football using natural language questions in Arabic or English.
+
+---
+
+## Agents
+
+| Agent | Role |
+|---|---|
+| Orchestrator | Understands natural language questions and delegates to the right agents |
+| Data Collector | Fetches real-time football data from Football-Data.org API |
+| Player Analyst | Analyzes player performance, statistics, and form |
+| Team Analyst | Analyzes team standings, results, and tactical patterns |
+| Match Analyst | Analyzes match events, key moments, and insights |
+| Report Writer | Compiles all analysis into a professional structured report |
+
+---
+
+## Key Features
+
+- Supports any natural language football question in Arabic or English
+- Covers Premier League, La Liga, Serie A, Bundesliga, Ligue 1 and Champions League
+- Real-time data via Football-Data.org API
+- Outputs automatically saved as Markdown, JSON, and PDF reports
+- Powered by Gemini and Groq LLMs via CrewAI
+- Sequential multi-agent pipeline with full context passing between agents
+
+---
 
 ## Installation
 
-Ensure you have Python >=3.10 <3.14 installed on your system. This project uses [UV](https://docs.astral.sh/uv/) for dependency management and package handling, offering a seamless setup and execution experience.
-
-First, if you haven't already, install uv:
+Ensure you have Python >=3.10 <3.14 installed. This project uses UV for dependency management.
 
 ```bash
-pip install uv
+pip install uv && crewai install && crewai run
 ```
 
-Next, navigate to your project directory and install the dependencies:
+---
 
-(Optional) Lock the dependencies and install them by using the CLI command:
-```bash
-crewai install
+## Configuration
+
+Add your API keys to the .env file:
+
+```env
+GEMINI_API_KEY=your_gemini_api_key
+FOOTBALL_API_KEY=your_football_data_api_key
+MODEL=gemini/gemini-2.0-flash-001
 ```
-### Customizing
 
-**Add your `OPENAI_API_KEY` into the `.env` file**
+Customize your setup:
+- src/sports_analytics_platform/config/agents.yaml - Define agent roles and goals
+- src/sports_analytics_platform/config/tasks.yaml - Define tasks and output files
+- src/sports_analytics_platform/crew.py - Add logic, tools, and configurations
+- src/sports_analytics_platform/main.py - Set your football question as input
 
-- Modify `src/sports_analytics_platform/config/agents.yaml` to define your agents
-- Modify `src/sports_analytics_platform/config/tasks.yaml` to define your tasks
-- Modify `src/sports_analytics_platform/crew.py` to add your own logic, tools and specific args
-- Modify `src/sports_analytics_platform/main.py` to add custom inputs for your agents and tasks
+---
 
 ## Running the Project
 
-To kickstart your crew of AI agents and begin task execution, run this from the root folder of your project:
-
 ```bash
-$ crewai run
+crewai run
 ```
 
-This command initializes the sports_analytics_platform Crew, assembling the agents and assigning them tasks as defined in your configuration.
+The crew will automatically:
+1. Understand your football question
+2. Fetch real-time data from the API
+3. Run analysis across players, teams, and matches
+4. Generate a full professional report saved in outputs/reports/
 
-This example, unmodified, will run the create a `report.md` file with the output of a research on LLMs in the root folder.
+---
 
-## Understanding Your Crew
+## Output Structure
 
-The sports_analytics_platform Crew is composed of multiple AI agents, each with unique roles, goals, and tools. These agents collaborate on a series of tasks, defined in `config/tasks.yaml`, leveraging their collective skills to achieve complex objectives. The `config/agents.yaml` file outlines the capabilities and configurations of each agent in your crew.
+```
+outputs/reports/
+├── 01_understand_request.md   - Parsed question and identified entities
+├── 02_collect_data.md         - Raw data fetched from Football API
+├── 03_analyze_player.md       - Player performance analysis
+├── 04_analyze_team.md         - Team performance analysis
+├── 05_analyze_match.md        - Match analysis and insights
+└── 06_final_report.md         - Complete professional analytics report
+```
 
-## Support
+---
 
-For support, questions, or feedback regarding the SportsAnalyticsPlatform Crew or crewAI.
-- Visit our [documentation](https://docs.crewai.com)
-- Reach out to us through our [GitHub repository](https://github.com/joaomdmoura/crewai)
-- [Join our Discord](https://discord.com/invite/X4JWnZnxPb)
-- [Chat with our docs](https://chatg.pt/DWjSBZn)
+## Project Structure
 
-Let's create wonders together with the power and simplicity of crewAI.
+```
+sports_analytics_platform/
+├── src/
+│   └── sports_analytics_platform/
+│       ├── config/
+│       │   ├── agents.yaml        - Agents definitions
+│       │   └── tasks.yaml         - Tasks definitions
+│       ├── tools/
+│       │   ├── custom_tool.py     - Football API tools
+│       │   └── report_saver.py    - PDF, Markdown, JSON saver
+│       ├── crew.py                - Crew setup and orchestration
+│       └── main.py                - Entry point
+├── outputs/
+│   └── reports/                   - Generated reports
+├── .env                           - API Keys
+└── pyproject.toml                 - Dependencies
+```
+
+---
+
+## Resources
+
+- CrewAI Documentation: https://docs.crewai.com
+- Football-Data.org API: https://www.football-data.org
+- Google AI Studio: https://aistudio.google.com
+- Groq Console: https://console.groq.com
