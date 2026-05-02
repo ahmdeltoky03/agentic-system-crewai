@@ -46,6 +46,7 @@ Add your API keys to the .env file:
 GEMINI_API_KEY=your_gemini_api_key
 FOOTBALL_API_KEY=your_football_data_api_key
 MODEL=gemini/gemini-2.0-flash-001
+AGENTOPS_API_KEY=your_agentops_api_key
 ```
 
 Customize your setup:
